@@ -1,0 +1,4 @@
+[]
+/* The square brackets must be placed within this json file or we 
+will receive an error when trying to append `todo` items within a list. 
+Square brackets corresponds to an array.*/
