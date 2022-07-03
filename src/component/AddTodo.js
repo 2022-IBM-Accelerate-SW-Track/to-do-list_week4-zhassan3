@@ -41,12 +41,31 @@ class AddTodo extends Component {
     event.preventDefault();
 
     if (this.state.content.trim()) {
+      /* This snippet of code is creating a json object that will be used as a body request to 
+      be sent to the `addItem` function located in our Express application. 
+      Place this code snippet below the code snippet above and make sure to replace the comments w/ t
+      he updated values for the following remaining keys: `task`, `currentDate`, and `dueDate`. */ 
+
       const jsonObject = {
         id: this.state.id,
         task: this.state.content,
         currentDate: this.state.date,
         dueDate: this.state.duedate
       };
+      Axios({
+        method: "POST",
+        url: "http://localhost:<port>/add/item",
+        data: {jsonObject},
+        headers: {
+           "Content-Type": "application/json"
+        }
+     }).then(res => {
+        console.log(res.data.message);
+     });
+     /* This snippet of code is making a **POST** request the `addItem` function located in our 
+     Express Application and returning a response message. Make sure to replace `<port>` with the port 
+     number that was used in the Express Application process such as **8080** or **3001**. */ 
+     
       this.props.addTodo(this.state);
       this.setState({
         content: "",
